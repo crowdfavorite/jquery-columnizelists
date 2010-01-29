@@ -30,7 +30,8 @@
 
 			// Put a wrapper around our new divs we're creating
 			cont.append('<div class="' + args.divWrapperClass + '"></div>');
-			var div_wrapper = cont.find("." + args.divWrapperClass);
+			// Find classes as compound class selectors
+			var div_wrapper = cont.find('.' + args.divWrapperClass.replace(' ', '.'));
 
 			// Loop through each list item
 			var i = 0;
@@ -41,7 +42,8 @@
 				if (i % row_count == 0) {
 					col_num++;
 					i = 0;
-					cur_col = args.colClass + '-' + col_num.toString();
+					var colClasses = args.colClass.replace(' ', '-');
+					cur_col = colClasses + '-' + col_num.toString();
 					div_wrapper.append('<div class="' + args.colClass + ' ' + cur_col + '"><ul></ul></div>');
 				}
 
@@ -50,7 +52,10 @@
 			});
 
 			// Now add the container class, and remove the initial ul
-			cont.addClass(args.containerClass).children("ul").remove();
+			if (args.containerClass) {
+				cont.addClass(args.containerClass)
+			};
+			cont.children("ul").remove();
 		});
 		
 	};
