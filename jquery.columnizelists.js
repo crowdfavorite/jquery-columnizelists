@@ -41,7 +41,7 @@
 				if (i % row_count == 0) {
 					col_num++;
 					i = 0;
-					cur_col = 'col-' + col_num.toString();
+					cur_col = args.colClass + '-' + col_num.toString();
 					div_wrapper.append('<div class="' + args.colClass + ' ' + cur_col + '"><ul></ul></div>');
 				}
 
