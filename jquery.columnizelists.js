@@ -20,6 +20,12 @@
 			var cont = $this.parent();
 			var items = $this.find('li');
 			var items_count = items.size();
+			
+			if (args.preserveOriginalClass) {
+				var originalClass = ' class="' + $this.attr('class') + '"';
+			} else {
+				var originalClass = '';
+			};
 
 			// If we have the column preference, figure out how many rows we should have, then do rows
 			if (args.pref == 'cols') {
@@ -44,7 +50,7 @@
 					i = 0;
 					var colClasses = args.colClass.replace(' ', '-');
 					cur_col = colClasses + '-' + col_num.toString();
-					div_wrapper.append('<div class="' + args.colClass + ' ' + cur_col + '"><ul></ul></div>');
+					div_wrapper.append('<div class="' + args.colClass + ' ' + cur_col + '"><ul' + originalClass + '></ul></div>');
 				}
 
 				$(this).appendTo(div_wrapper.find('.' + cur_col + ' ul'));
@@ -69,6 +75,7 @@
 		cols: 4,
 		containerClass: 'clearfix',
 		colClass: 'cf-col',
-		divWrapperClass: 'div-wrapper'
+		divWrapperClass: 'div-wrapper',
+		preserveOriginalClass: false
 	}
 })(jQuery);
